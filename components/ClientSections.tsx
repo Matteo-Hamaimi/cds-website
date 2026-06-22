@@ -8,7 +8,7 @@ const W = { maxWidth: 1200, margin: '0 auto', padding: '0 20px' }
 const S = { padding: '72px 0', borderBottom: '1px solid var(--border)' }
 
 const Eyebrow = ({ children }: { children: string }) => (
-  <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase' as const, color: 'var(--soft)', marginBottom: 10 }}>{children}</p>
+  <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase' as const, color: 'var(--blue)', marginBottom: 10 }}>{children}</p>
 )
 const STitle = ({ children }: { children: string }) => (
   <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(2rem,5vw,3.8rem)', fontWeight: 900, color: 'var(--black)', letterSpacing: '-.02em', textTransform: 'uppercase' as const, lineHeight: 1, marginBottom: 32 }}>{children}</h2>
