@@ -35,7 +35,7 @@ export default function AdminResultats() {
   }
 
   return (
-    <div>
+    <div style={{ maxWidth: '100%' }}>
       <h1 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '2.2rem', fontWeight: 900, color: '#f5f5f5', textTransform: 'uppercase', marginBottom: 32 }}>Résultats</h1>
 
       {/* Formulaire ajout */}

@@ -42,10 +42,10 @@ export default function AdminClassement() {
   const th: React.CSSProperties = { padding: '8px 10px', fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.6rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#444', textAlign: 'center', borderBottom: '1px solid #1a1a1a' }
 
   return (
-    <div>
+    <div style={{ maxWidth: '100%' }}>
       <h1 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '2.2rem', fontWeight: 900, color: '#f5f5f5', textTransform: 'uppercase', marginBottom: 32 }}>Classement</h1>
-      <div style={{ overflowX: 'auto', border: '1px solid #1a1a1a', borderRadius: 6, marginBottom: 20 }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.85rem' }}>
+      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', border: '1px solid #1a1a1a', borderRadius: 6, marginBottom: 20 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.85rem', minWidth: 600 }}>
           <thead><tr style={{ background: '#111' }}>
             <th style={{ ...th, width: 50 }}>#</th>
             <th style={{ ...th, textAlign: 'left', minWidth: 180 }}>Équipe</th>

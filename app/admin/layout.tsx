@@ -104,7 +104,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       )}
 
       {/* Main */}
-      <main style={{ flex: 1, padding: isMobile ? '24px 16px' : '40px 48px', color: '#d1d1d1', overflowY: 'auto', overflowX: 'hidden' }}>
+      <main style={{ flex: 1, padding: isMobile ? '24px 16px' : '40px 48px', color: '#d1d1d1', overflowY: 'auto', overflowX: 'hidden', minWidth: 0, maxWidth: '100%' }}>
         {children}
       </main>
     </div>
