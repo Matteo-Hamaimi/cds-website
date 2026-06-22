@@ -1,65 +1,67 @@
-import Image from "next/image";
+import { supabase } from '@/lib/supabase'
+import type { ProchainMatch, ClassementRow, Resultat, Joueur, GaleriePhoto } from '@/lib/supabase'
+import Header from '@/components/Header'
+import ClientSections from '@/components/ClientSections'
+import Image from 'next/image'
 
-export default function Home() {
+export const revalidate = 60
+
+async function getData() {
+  const [match, classement, resultats, effectif, galerie] = await Promise.all([
+    supabase.from('prochain_match').select('*').order('id', { ascending: false }).limit(1).single(),
+    supabase.from('classement').select('*').order('position'),
+    supabase.from('resultats').select('*').order('date_iso', { ascending: false }).limit(7),
+    supabase.from('effectif').select('*').eq('actif', true).order('numero'),
+    supabase.from('galerie').select('*').order('created_at', { ascending: false }),
+  ])
+  return {
+    match: match.data as ProchainMatch | null,
+    classement: (classement.data ?? []) as ClassementRow[],
+    resultats: (resultats.data ?? []) as Resultat[],
+    effectif: (effectif.data ?? []) as Joueur[],
+    galerie: (galerie.data ?? []) as GaleriePhoto[],
+  }
+}
+
+export default async function Home() {
+  const { match, classement, resultats, effectif, galerie } = await getData()
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <Header />
+
+      {/* HERO — height inclut le header fixe (60px) */}
+      <section id="hero" style={{ position: 'relative', height: '100vh', minHeight: 620, overflow: 'hidden', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/team/hero.jpg')", backgroundSize: 'cover', backgroundPosition: 'center top', filter: 'brightness(.48) saturate(.75)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 45%)' }} />
+        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '80px 32px 0' }}>
+          <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 700, letterSpacing: '.28em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 12 }}>
+            Foot à 7 &nbsp;·&nbsp; FLA Île-de-France &nbsp;·&nbsp; Since 2025
+          </p>
+          <h1 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(5rem,14vw,10rem)', fontWeight: 900, color: '#fff', letterSpacing: '-.03em', lineHeight: .88, textTransform: 'uppercase', marginBottom: 22 }}>
+            CDS
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <div style={{ width: 32, height: 2, background: '#E6B23C', marginBottom: 16, opacity: .9 }} />
+          <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1rem', fontWeight: 600, letterSpacing: '.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)' }}>
+            2<sup style={{ fontSize: '.72em' }}>e</sup>&nbsp;division &nbsp;·&nbsp; Vendredi soir
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+      </section>
+
+      <ClientSections match={match} classement={classement} resultats={resultats} effectif={effectif} galerie={galerie} />
+
+      {/* FOOTER */}
+      <footer style={{ padding: '56px 32px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, background: 'var(--black)' }}>
+        <Image src="/logo.png" alt="CDS" width={52} height={68} style={{ height: 52, width: 'auto', opacity: .6 }} />
+        <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1.4rem', fontWeight: 900, color: 'var(--bg)', letterSpacing: '.06em', textTransform: 'uppercase' }}>CDS Football Club</p>
+        <a href="https://instagram.com/cds_foot" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.8rem', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: '#444', textDecoration: 'none' }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          @cds_foot
+        </a>
+        <p style={{ fontSize: '.65rem', color: '#333' }}>Since 2025 · FLA Île-de-France</p>
+      </footer>
+    </>
+  )
 }
