@@ -73,15 +73,17 @@ export default function AdminResultats() {
           if (isExt) res = r.score_ext > r.score_dom ? 'V' : r.score_ext < r.score_dom ? 'D' : 'N'
           const col = { V: '#4ade80', N: '#888', D: '#f87171' }[res]!
           return (
-            <div key={r.id} style={{ background: '#111', border: '1px solid #1a1a1a', borderRadius: 4, padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
-              <span style={{ fontSize: '.75rem', color: '#444', minWidth: 100 }}>{fmtDate(r.date_iso)}</span>
-              <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: isDom ? 700 : 400, color: isDom ? '#f5f5f5' : '#555', textTransform: 'uppercase', fontSize: '.9rem' }}>{r.domicile}</span>
-                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, color: '#f5f5f5', fontSize: '1.2rem', background: '#1a1a1a', padding: '2px 10px', borderRadius: 2 }}>{r.score_dom}–{r.score_ext}</span>
-                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: isExt ? 700 : 400, color: isExt ? '#f5f5f5' : '#555', textTransform: 'uppercase', fontSize: '.9rem', textAlign: 'right' }}>{r.exterieur}</span>
+            <div key={r.id} style={{ background: '#111', border: '1px solid #1a1a1a', borderRadius: 4, padding: '12px 14px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: '.75rem', color: '#444', width: '100%' }}>{fmtDate(r.date_iso)}</span>
+              <div style={{ flex: 1, minWidth: 0, display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 6 }}>
+                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: isDom ? 700 : 400, color: isDom ? '#f5f5f5' : '#555', textTransform: 'uppercase', fontSize: '.85rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.domicile}</span>
+                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, color: '#f5f5f5', fontSize: '1.1rem', background: '#1a1a1a', padding: '2px 8px', borderRadius: 2, whiteSpace: 'nowrap' }}>{r.score_dom}–{r.score_ext}</span>
+                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: isExt ? 700 : 400, color: isExt ? '#f5f5f5' : '#555', textTransform: 'uppercase', fontSize: '.85rem', textAlign: 'right', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.exterieur}</span>
               </div>
-              <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 700, color: col, letterSpacing: '.08em', minWidth: 56, textAlign: 'right' }}>{{ V: 'Victoire', N: 'Nul', D: 'Défaite' }[res]}</span>
-              <button onClick={() => del(r.id)} style={{ background: 'none', border: 'none', color: '#444', cursor: 'pointer', fontSize: '1.1rem' }}>✕</button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 700, color: col, letterSpacing: '.08em' }}>{{ V: 'Victoire', N: 'Nul', D: 'Défaite' }[res]}</span>
+                <button onClick={() => del(r.id)} style={{ background: 'none', border: 'none', color: '#444', cursor: 'pointer', fontSize: '1.1rem' }}>✕</button>
+              </div>
             </div>
           )
         })}
