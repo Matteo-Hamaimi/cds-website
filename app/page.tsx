@@ -32,7 +32,7 @@ export default async function Home() {
 
       {/* HERO — height inclut le header fixe (60px) */}
       <section id="hero" style={{ position: 'relative', height: '100vh', minHeight: 620, overflow: 'hidden', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/team/hero.jpg')", backgroundSize: 'cover', backgroundPosition: 'center top', filter: 'brightness(.48) saturate(.75)' }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/team/hero.png')", backgroundSize: 'cover', backgroundPosition: 'center top', filter: 'brightness(.48) saturate(.75)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 45%)' }} />
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '80px 32px 0' }}>
           <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 700, letterSpacing: '.28em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 12 }}>
