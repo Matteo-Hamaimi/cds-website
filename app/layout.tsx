@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'CDS Football Club',
     description: 'Foot à 7 · 2e division · FLA Île-de-France · Since 2025',
-    images: [{ url: '/team/hero.jpg', width: 1920, height: 1440 }],
+    images: [{ url: '/logo.png' }],
     locale: 'fr_FR',
     type: 'website',
   },
