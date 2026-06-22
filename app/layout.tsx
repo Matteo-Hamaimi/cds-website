@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
+      <head>
+        <link rel="preload" as="image" href="/team/hero.jpg" fetchPriority="high" />
+      </head>
       <body>{children}</body>
     </html>
   )
