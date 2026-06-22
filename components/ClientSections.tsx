@@ -88,7 +88,6 @@ function ClassementSection({ rows }: { rows: ClassementRow[] }) {
                   <td style={{ ...td(r.is_cds), textAlign: 'left', fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800, fontSize: '.95rem', color: r.is_cds ? '#E6B23C' : 'var(--soft)' }}>{r.position}</td>
                   <td style={{ ...td(r.is_cds), textAlign: 'left' }}>
                     <span style={{ fontWeight: r.is_cds ? 700 : 500, color: r.is_cds ? '#fff' : 'var(--black)' }}>{r.equipe}</span>
-                    {r.is_cds && <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.58rem', fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', color: '#E6B23C', marginLeft: 8 }}>vous</span>}
                   </td>
                   <td style={{ ...td(r.is_cds), fontWeight: 700, fontSize: '.95rem', color: r.is_cds ? '#fff' : 'var(--black)' }}>{r.pts}</td>
                   <td style={td(r.is_cds)}>{r.j}</td>
