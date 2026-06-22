@@ -34,8 +34,8 @@ export default async function Home() {
       <section id="hero" style={{ position: 'relative', height: '100vh', minHeight: 620, overflow: 'hidden', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/team/hero.jpg')", backgroundSize: 'cover', backgroundPosition: 'center top', filter: 'brightness(.48) saturate(.75)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 45%)' }} />
-        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '80px 32px 0' }}>
-          <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 700, letterSpacing: '.28em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 12 }}>
+        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '80px 20px 0' }}>
+          <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(.58rem,.68rem + .1vw,.68rem)', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 12 }}>
             Foot à 7 &nbsp;·&nbsp; FLA Île-de-France &nbsp;·&nbsp; Since 2025
           </p>
           <h1 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(5rem,14vw,10rem)', fontWeight: 900, color: '#fff', letterSpacing: '-.03em', lineHeight: .88, textTransform: 'uppercase', marginBottom: 22 }}>

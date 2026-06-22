@@ -4,14 +4,14 @@ import type { ProchainMatch, ClassementRow, Resultat, Joueur, GaleriePhoto } fro
 import Countdown from './Countdown'
 import Lightbox from './Lightbox'
 
-const W = { maxWidth: 1200, margin: '0 auto', padding: '0 32px' }
-const S = { padding: '88px 0', borderBottom: '1px solid var(--border)' }
+const W = { maxWidth: 1200, margin: '0 auto', padding: '0 20px' }
+const S = { padding: '72px 0', borderBottom: '1px solid var(--border)' }
 
 const Eyebrow = ({ children }: { children: string }) => (
   <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase' as const, color: 'var(--soft)', marginBottom: 10 }}>{children}</p>
 )
 const STitle = ({ children }: { children: string }) => (
-  <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, color: 'var(--black)', letterSpacing: '-.02em', textTransform: 'uppercase' as const, lineHeight: 1, marginBottom: 40 }}>{children}</h2>
+  <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(2rem,5vw,3.8rem)', fontWeight: 900, color: 'var(--black)', letterSpacing: '-.02em', textTransform: 'uppercase' as const, lineHeight: 1, marginBottom: 32 }}>{children}</h2>
 )
 
 function fmtDate(iso: string) {
@@ -28,17 +28,17 @@ function MatchSection({ match }: { match: ProchainMatch | null }) {
     <div style={W}><div style={S}>
       <Eyebrow>Agenda</Eyebrow>
       <STitle>Prochain match</STitle>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 56, alignItems: 'start', maxWidth: 700 }}>
-        <div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 40, alignItems: 'start' }}>
+        <div style={{ flex: '1 1 260px' }}>
           <span style={{ display: 'inline-block', fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.62rem', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2, marginBottom: 20, ...(match.domicile ? { background: 'var(--black)', color: 'var(--bg)' } : { background: 'var(--surface)', color: 'var(--soft)', border: '1px solid var(--border)' }) }}>
             {match.domicile ? 'Domicile' : 'Extérieur'}
           </span>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18, flexWrap: 'wrap' as const }}>
-            <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1.5rem', fontWeight: 900, color: 'var(--black)', textTransform: 'uppercase' as const }}>
+            <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(1.2rem,4vw,1.5rem)', fontWeight: 900, color: 'var(--black)', textTransform: 'uppercase' as const }}>
               {match.domicile ? 'CDS' : match.adversaire}
             </span>
             <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.75rem', fontWeight: 700, letterSpacing: '.1em', color: 'var(--border)' }}>VS</span>
-            <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1.5rem', fontWeight: 900, color: 'var(--black)', textTransform: 'uppercase' as const }}>
+            <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(1.2rem,4vw,1.5rem)', fontWeight: 900, color: 'var(--black)', textTransform: 'uppercase' as const }}>
               {match.domicile ? match.adversaire : 'CDS'}
             </span>
           </div>
@@ -58,18 +58,18 @@ function MatchSection({ match }: { match: ProchainMatch | null }) {
 
 // ── Classement ──────────────────────────────────────────────────────────────
 function ClassementSection({ rows }: { rows: ClassementRow[] }) {
-  const th: React.CSSProperties = { padding: '12px 16px', fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.62rem', fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--soft)', textAlign: 'center' }
-  const td = (cds: boolean): React.CSSProperties => ({ padding: '13px 16px', fontSize: '.87rem', color: cds ? 'rgba(255,255,255,.6)' : 'var(--soft)', textAlign: 'center', borderBottom: '1px solid var(--border)', background: cds ? 'var(--black)' : 'var(--white)' })
+  const th: React.CSSProperties = { padding: '10px 12px', fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.62rem', fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--soft)', textAlign: 'center' }
+  const td = (cds: boolean): React.CSSProperties => ({ padding: '11px 12px', fontSize: '.87rem', color: cds ? 'rgba(255,255,255,.6)' : 'var(--soft)', textAlign: 'center', borderBottom: '1px solid var(--border)', background: cds ? 'var(--black)' : 'var(--white)' })
 
   return (
     <div style={W}><div id="classement" style={S}>
       <Eyebrow>Ligue FLA — 2e division</Eyebrow>
       <STitle>Classement</STitle>
-      <div style={{ border: '1px solid var(--border)', borderRadius: 4, overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <div style={{ border: '1px solid var(--border)', borderRadius: 4, overflow: 'hidden', overflowX: 'auto' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 320 }}>
           <thead>
             <tr style={{ borderBottom: '1px solid var(--border)', background: 'var(--surface)' }}>
-              <th style={{ ...th, textAlign: 'left', width: 44 }}>#</th>
+              <th style={{ ...th, textAlign: 'left', width: 36 }}>#</th>
               <th style={{ ...th, textAlign: 'left' }}>Équipe</th>
               <th style={th}>Pts</th>
               <th style={th}>J</th>
@@ -111,7 +111,7 @@ function ResultatsSection({ rows }: { rows: Resultat[] }) {
     <div style={W}><div id="resultats" style={S}>
       <Eyebrow>Saison 2025–26</Eyebrow>
       <STitle>Résultats</STitle>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 1, background: 'var(--border)', border: '1px solid var(--border)', borderRadius: 4, overflow: 'hidden' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,280px),1fr))', gap: 1, background: 'var(--border)', border: '1px solid var(--border)', borderRadius: 4, overflow: 'hidden' }}>
         {rows.map(r => {
           const isDom = r.domicile === 'CDS'
           const isExt = r.exterieur === 'CDS'
@@ -121,15 +121,15 @@ function ResultatsSection({ rows }: { rows: Resultat[] }) {
           const lbl = { V: 'Victoire', N: 'Nul', D: 'Défaite' }[res]!
           const cls = { V: { background: 'var(--black)', color: 'var(--bg)' }, N: { background: 'var(--surface)', color: 'var(--soft)', border: '1px solid var(--border)' }, D: { background: 'var(--surface)', color: 'var(--soft)', border: '1px solid var(--border)' } }[res]!
           return (
-            <div key={r.id} style={{ background: 'var(--white)', padding: '20px 22px 18px' }}>
+            <div key={r.id} style={{ background: 'var(--white)', padding: '18px 16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
                 <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.68rem', fontWeight: 600, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--soft)' }}>{fmtDate(r.date_iso)}</span>
                 <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.62rem', fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 2, ...cls }}>{lbl}</span>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.95rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.03em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: isDom ? 'var(--black)' : 'var(--soft)' }}>{r.domicile}</span>
-                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1.5rem', fontWeight: 900, whiteSpace: 'nowrap', textAlign: 'center', background: 'var(--black)', color: 'var(--bg)', padding: '4px 12px', borderRadius: 2 }}>{r.score_dom}–{r.score_ext}</span>
-                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.95rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.03em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textAlign: 'right', color: isExt ? 'var(--black)' : 'var(--soft)' }}>{r.exterieur}</span>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 6 }}>
+                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.9rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.03em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: isDom ? 'var(--black)' : 'var(--soft)' }}>{r.domicile}</span>
+                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(1.1rem,4vw,1.5rem)', fontWeight: 900, whiteSpace: 'nowrap', textAlign: 'center', background: 'var(--black)', color: 'var(--bg)', padding: '4px 10px', borderRadius: 2 }}>{r.score_dom}–{r.score_ext}</span>
+                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.9rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.03em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textAlign: 'right', color: isExt ? 'var(--black)' : 'var(--soft)' }}>{r.exterieur}</span>
               </div>
             </div>
           )
@@ -145,22 +145,22 @@ function EffectifSection({ joueurs }: { joueurs: Joueur[] }) {
     <div style={W}><div id="effectif" style={S}>
       <Eyebrow>Saison 2025–26</Eyebrow>
       <STitle>Effectif</STitle>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(190px,1fr))', gap: 1, background: 'var(--border)', border: '1px solid var(--border)', borderRadius: 4, overflow: 'hidden' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,180px),1fr))', gap: 1, background: 'var(--border)', border: '1px solid var(--border)', borderRadius: 4, overflow: 'hidden' }}>
         {joueurs.map(j => {
           const init = (j.surnom[0] + j.nom[0]).toUpperCase()
           return (
-            <div key={j.id} style={{ background: 'var(--white)', padding: '22px 20px 18px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
-                <div style={{ width: 42, height: 42, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.88rem', fontWeight: 800, color: 'var(--soft)', overflow: 'hidden', flexShrink: 0 }}>
+            <div key={j.id} style={{ background: 'var(--white)', padding: '18px 16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.88rem', fontWeight: 800, color: 'var(--soft)', overflow: 'hidden', flexShrink: 0 }}>
                   {j.photo_url ? <img src={j.photo_url} alt={j.surnom} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : init}
                 </div>
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.6rem', fontWeight: 700, letterSpacing: '.06em', color: 'var(--soft)', marginBottom: 2 }}>#{j.numero}</div>
-                  <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1.05rem', fontWeight: 900, color: 'var(--black)', textTransform: 'uppercase', letterSpacing: '.02em', lineHeight: 1.1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{j.surnom}</div>
-                  <div style={{ fontSize: '.73rem', color: 'var(--soft)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{j.nom}</div>
+                  <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1rem', fontWeight: 900, color: 'var(--black)', textTransform: 'uppercase', letterSpacing: '.02em', lineHeight: 1.1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{j.surnom}</div>
+                  <div style={{ fontSize: '.72rem', color: 'var(--soft)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{j.nom}</div>
                 </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 12, marginTop: 14, borderTop: '1px solid var(--border)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 10, marginTop: 12, borderTop: '1px solid var(--border)' }}>
                 <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.66rem', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--soft)' }}>{j.poste}</span>
                 <span style={{ fontSize: '.7rem', color: 'var(--soft)' }}>{j.buts}G &nbsp;{j.passes}A</span>
               </div>
@@ -179,7 +179,7 @@ function GalerieSection({ photos }: { photos: GaleriePhoto[] }) {
     <div style={W}><div id="galerie" style={S}>
       <Eyebrow>Photos</Eyebrow>
       <STitle>Galerie</STitle>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 4 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,200px),1fr))', gap: 4 }}>
         {photos.map(g => (
           <div key={g.id} onClick={() => setLb({ src: g.photo_url, alt: g.legende })}
                style={{ position: 'relative', overflow: 'hidden', aspectRatio: '1', background: 'var(--surface)', cursor: 'pointer', borderRadius: 4 }}
