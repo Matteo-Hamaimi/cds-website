@@ -30,19 +30,19 @@ export default async function Home() {
     <>
       <Header />
 
-      {/* HERO — height inclut le header fixe (60px) */}
-      <section id="hero" style={{ position: 'relative', height: '100vh', minHeight: 620, overflow: 'hidden', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
+      {/* HERO */}
+      <section id="hero" style={{ position: 'relative', height: '100svh', minHeight: 500, overflow: 'hidden', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/team/hero.jpg')", backgroundSize: 'cover', backgroundPosition: 'center top', filter: 'brightness(.48) saturate(.75)' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 45%)' }} />
-        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '80px 20px 0' }}>
-          <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(.58rem,.68rem + .1vw,.68rem)', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 12 }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,.75) 0%, rgba(0,0,0,0) 50%)' }} />
+        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '80px 16px 0', width: '100%' }}>
+          <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(.55rem,.6rem + .4vw,.68rem)', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 12 }}>
             Foot à 7 &nbsp;·&nbsp; FLA Île-de-France &nbsp;·&nbsp; Since 2025
           </p>
-          <h1 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(5rem,14vw,10rem)', fontWeight: 900, color: '#fff', letterSpacing: '-.03em', lineHeight: .88, textTransform: 'uppercase', marginBottom: 22 }}>
+          <h1 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(4.5rem,20vw,10rem)', fontWeight: 900, color: '#fff', letterSpacing: '-.03em', lineHeight: .88, textTransform: 'uppercase', marginBottom: 22 }}>
             CDS
           </h1>
           <div style={{ width: 32, height: 2, background: '#E6B23C', marginBottom: 16, opacity: .9 }} />
-          <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1rem', fontWeight: 600, letterSpacing: '.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)' }}>
+          <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(.8rem,.85rem + .2vw,1rem)', fontWeight: 600, letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)' }}>
             2<sup style={{ fontSize: '.72em' }}>e</sup>&nbsp;division &nbsp;·&nbsp; Vendredi soir
           </p>
         </div>
@@ -51,7 +51,7 @@ export default async function Home() {
       <ClientSections match={match} classement={classement} resultats={resultats} effectif={effectif} galerie={galerie} />
 
       {/* FOOTER */}
-      <footer style={{ padding: '56px 32px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, background: 'var(--black)' }}>
+      <footer style={{ padding: '48px 20px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, background: 'var(--black)' }}>
         <Image src="/logo.png" alt="CDS" width={52} height={68} style={{ height: 52, width: 'auto', opacity: .6 }} />
         <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1.4rem', fontWeight: 900, color: 'var(--bg)', letterSpacing: '.06em', textTransform: 'uppercase' }}>CDS Football Club</p>
         <a href="https://instagram.com/cds_foot" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: "'Barlow Condensed',sans-serif", fontSize: '.8rem', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: '#444', textDecoration: 'none' }}>
