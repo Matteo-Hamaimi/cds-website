@@ -25,7 +25,3 @@ body {
 ::-webkit-scrollbar { width: 0; }
 html { scrollbar-width: none; }
 
-/* Hero photo — moins zoomé sur mobile */
-@media (max-width: 768px) {
-  .hero-bg { background-position: center center !important; background-size: 150% !important; }
-}
